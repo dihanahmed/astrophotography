@@ -1,0 +1,20 @@
+/* variables.css - Theme colors & fonts. Change a value here and the whole site updates. */
+
+:root {
+  --color-bg: #0b0d17;          /* page background */
+  --color-bg-glow: #1a1f3d;     /* soft gradient glow at the top */
+  --color-card: #151a2d;        /* card background */
+  --color-card-hover: #1b2140;  /* card background on hover */
+  --color-input: #0f1322;       /* inputs & textareas */
+  --color-border: #262d4d;      /* subtle borders */
+  --color-accent: #5b8cff;      /* buttons, links, highlights */
+  --color-accent-hover: #7aa2ff;
+  --color-danger: #ff5b7a;      /* delete button & errors */
+  --color-success: #5be3a0;
+  --color-text: #e6e8f0;        /* main text */
+  --color-text-muted: #9aa1bd;  /* secondary text */
+
+  --font-main: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+  --radius: 16px;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
