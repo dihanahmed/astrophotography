@@ -10,9 +10,11 @@
     "build:frontend": "npm run build --prefix frontend",
     "export": "node scripts/export-static.js",
     "build:static": "npm run export && npm run build:static --prefix frontend",
-    "preview:static": "npm run preview --prefix frontend"
+    "preview:static": "npm run preview --prefix frontend",
+    "deploy": "npm run build:static && gh-pages -d frontend/dist"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "gh-pages": "^6.3.0"
   }
 }

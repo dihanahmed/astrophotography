@@ -63,7 +63,13 @@ The published site has **no upload, save or delete buttons**. It only shows the 
    ```
 
    This copies your photos into `frontend/public/` and builds the site into `frontend/dist/`.
-3. Publish the contents of `frontend/dist/` to GitHub Pages (for example with the `gh-pages` branch or a GitHub Actions workflow).
+3. Publish to GitHub Pages with one command (it rebuilds, then pushes `frontend/dist/` to the `gh-pages` branch of your repo):
+
+   ```bash
+   npm run deploy
+   ```
+
+   First time only: push the project to GitHub and, under **Settings → Pages**, choose the `gh-pages` branch.
 4. To add more photos later, repeat steps 1-3.
 
 Tip: `npm run preview:static` (after building) lets you check the read-only site locally before publishing.
