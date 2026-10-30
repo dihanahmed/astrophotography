@@ -35,8 +35,12 @@ async function request(url, options) {
 }
 
 // Read-only: load the exported photos.json file. Otherwise: ask the backend.
+// 'no-cache' makes the browser check for a newer photos.json every time,
+// so a fresh deploy never shows an old, cached photo list.
 export const getPhotos = () =>
-  READ_ONLY ? request(`${BASE}photos.json`) : request(`${API_URL}/api/photos`);
+  READ_ONLY
+    ? request(`${BASE}photos.json`, { cache: 'no-cache' })
+    : request(`${API_URL}/api/photos`);
 
 // Uploads use FormData (needed for sending files). Don't set Content-Type manually.
 export const uploadPhoto = (file, title) => {
