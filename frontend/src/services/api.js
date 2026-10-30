@@ -46,11 +46,11 @@ export const uploadPhoto = (file, title) => {
   return request(`${API_URL}/api/photos`, { method: 'POST', body: form });
 };
 
-export const updatePhoto = (id, title, description) =>
+export const updatePhoto = (id, title, description, capturedBy) =>
   request(`${API_URL}/api/photos/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title, description }),
+    body: JSON.stringify({ title, description, capturedBy }),
   });
 
 export const deletePhoto = (id) => request(`${API_URL}/api/photos/${id}`, { method: 'DELETE' });

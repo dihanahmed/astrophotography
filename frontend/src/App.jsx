@@ -4,6 +4,7 @@
 
 import { useEffect, useState } from 'react';
 import Header from './components/Header.jsx';
+import PageNav from './components/PageNav.jsx';
 import UploadForm from './components/UploadForm.jsx';
 import Gallery from './components/Gallery.jsx';
 import Lightbox from './components/Lightbox.jsx';
@@ -14,6 +15,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [lightboxPhoto, setLightboxPhoto] = useState(null); // photo shown full-size, or null
+  const [page, setPage] = useState(''); // active page filter (see PageNav)
 
   // Load photos once when the page opens.
   useEffect(() => {
@@ -28,8 +30,13 @@ export default function App() {
   const replacePhoto = (photo) => setPhotos((prev) => prev.map((p) => (p.id === photo.id ? photo : p)));
   const removePhoto = (id) => setPhotos((prev) => prev.filter((p) => p.id !== id));
 
+  // Which page is showing: '' = all, 'seestar', or 'camera'.
+  // Photos with no "captured by" value only appear on "All Photos".
+  const visiblePhotos = page ? photos.filter((p) => p.capturedBy === page) : photos;
+
   return (
     <main className="container">
+      <PageNav active={page} onChange={setPage} />
       <Header />
       {/* Uploading is only available when running locally */}
       {!READ_ONLY && <UploadForm onUploaded={addPhoto} />}
@@ -39,7 +46,7 @@ export default function App() {
 
       {!loading && !error && (
         <Gallery
-          photos={photos}
+          photos={visiblePhotos}
           onUpdated={replacePhoto}
           onDeleted={removePhoto}
           onOpen={setLightboxPhoto}

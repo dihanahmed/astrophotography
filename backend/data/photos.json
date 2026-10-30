@@ -4,20 +4,23 @@
     "title": "us milky way",
     "description": "A dramatic showdown of Milky way and us.",
     "filename": "1792759347479-5a356cf3.jpg",
-    "uploadDate": "2026-10-23T12:42:27.514Z"
+    "uploadDate": "2026-10-23T12:42:27.514Z",
+    "capturedBy": "camera"
   },
   {
     "id": "b20e895b-0ece-4b11-87e6-6340145294d2",
     "title": "lmc smc",
     "description": "Large and Small Magellanic Cloud",
     "filename": "1792759374388-18d82004.jpg",
-    "uploadDate": "2026-10-23T12:42:54.397Z"
+    "uploadDate": "2026-10-23T12:42:54.397Z",
+    "capturedBy": "camera"
   },
   {
     "id": "d04664c5-082d-42e1-b59d-2f6cedd83b89",
     "title": "lmc milky",
     "description": "Winter Milky Way Galaxy and Large Magellanic Cloud",
     "filename": "1792759430104-4b3f6456.jpg",
-    "uploadDate": "2026-10-23T12:43:50.126Z"
+    "uploadDate": "2026-10-23T12:43:50.126Z",
+    "capturedBy": "camera"
   }
 ]

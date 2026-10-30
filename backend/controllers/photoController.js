@@ -1,6 +1,7 @@
 // photoController.js - The logic behind each API route.
 // "Database" = the JSON file backend/data/photos.json (an array of photo objects).
-// Each photo: { id, title, description, filename, uploadDate }
+// Each photo: { id, title, description, filename, uploadDate, capturedBy }
+// capturedBy is optional: 'seestar', 'camera', or '' / missing (not set).
 
 const fs = require('fs');
 const path = require('path');
@@ -8,6 +9,7 @@ const crypto = require('crypto');
 
 const DATA_FILE = path.join(__dirname, '..', 'data', 'photos.json');
 const UPLOADS_DIR = path.join(__dirname, '..', 'uploads');
+const CAPTURED_BY = ['', 'seestar', 'camera']; // allowed "captured by" values
 
 // Read all photos from the JSON file (empty list if the file is missing/broken).
 function readPhotos() {
@@ -64,9 +66,11 @@ exports.updatePhoto = (req, res) => {
   const photo = photos.find((p) => p.id === req.params.id);
   if (!photo) return res.status(404).json({ error: 'Photo not found.' });
 
-  const { title, description } = req.body;
+  const { title, description, capturedBy } = req.body;
   if (typeof title === 'string' && title.trim()) photo.title = title.trim();
   if (typeof description === 'string') photo.description = description;
+  // Only accept known values ('' means "not set")
+  if (CAPTURED_BY.includes(capturedBy)) photo.capturedBy = capturedBy;
 
   writePhotos(photos);
   res.json(photo);
