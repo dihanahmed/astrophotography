@@ -1,7 +1,6 @@
-// PageNav.jsx - Three buttons in the top-right corner that switch between
-// the "pages": All photos, Seestar captures, Camera captures.
-// There is no real URL routing; App just remembers which page is active,
-// which also works on the static GitHub Pages site.
+// PageNav.jsx - Buttons in the top-right corner: three that switch between
+// the "pages" (All photos, Seestar captures, Camera captures), plus "Admin".
+// The three filters don't change the URL; HomePage just remembers which is active.
 
 // value = what a photo's "capturedBy" must equal to appear on that page ('' = show everything)
 export const PAGES = [
@@ -23,6 +22,8 @@ export default function PageNav({ active, onChange }) {
           {page.label}
         </button>
       ))}
+      {/* Opens the admin login page (see App.jsx) */}
+      <a className="page-nav-btn" href="#/admin">Admin</a>
     </nav>
   );
 }

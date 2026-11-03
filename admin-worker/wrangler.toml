@@ -1,0 +1,14 @@
+# wrangler.toml - Settings for the Cloudflare Worker. Nothing here is secret.
+# Secrets (GITHUB_TOKEN, ADMIN_USERNAME, ADMIN_PASSWORD, SESSION_SECRET) are set
+# separately with `npx wrangler secret put NAME` and are never stored in code.
+
+name = "astro-admin"            # the Worker's address becomes astro-admin.<your-subdomain>.workers.dev
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+[vars]
+GITHUB_OWNER = "dihanahmed"
+GITHUB_REPO = "astrophotography"
+GITHUB_BRANCH = "main"
+# Only these websites may call the Worker (comma separated, no trailing slash).
+ALLOWED_ORIGINS = "https://dihanahmed.github.io,http://localhost:5173"

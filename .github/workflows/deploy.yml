@@ -1,0 +1,46 @@
+# deploy.yml - Rebuilds and publishes the website every time something is pushed to main.
+# That includes commits made by the admin Worker (new, edited or deleted photos),
+# so the live site updates by itself about 1-2 minutes after you press Save.
+# The built site goes to the gh-pages branch, which GitHub Pages serves.
+
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # adds a "Run workflow" button in the Actions tab
+
+permissions:
+  contents: write # needed to push to the gh-pages branch
+
+# If two changes land close together, only the newest build is published.
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install
+        run: npm ci
+        working-directory: frontend
+
+      - name: Build
+        run: npm run build
+        working-directory: frontend
+
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: frontend/dist
+          force_orphan: true # keep only the latest build on gh-pages, so it stays small

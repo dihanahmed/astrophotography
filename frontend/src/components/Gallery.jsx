@@ -2,23 +2,16 @@
 // Shows a friendly message when there are no photos yet.
 
 import PhotoCard from './PhotoCard.jsx';
-import { READ_ONLY } from '../services/api.js';
 
-export default function Gallery({ photos, onUpdated, onDeleted, onOpen }) {
+export default function Gallery({ photos, onOpen }) {
   if (photos.length === 0) {
-    return <p className="empty">{READ_ONLY ? 'No astrophotos yet — check back soon!' : 'No astrophotos yet — upload your first one!'}</p>;
+    return <p className="empty">No astrophotos yet — check back soon!</p>;
   }
 
   return (
     <section className="gallery">
       {photos.map((photo) => (
-        <PhotoCard
-          key={photo.id}
-          photo={photo}
-          onUpdated={onUpdated}
-          onDeleted={onDeleted}
-          onOpen={onOpen}
-        />
+        <PhotoCard key={photo.id} photo={photo} onOpen={onOpen} />
       ))}
     </section>
   );

@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .DS_Store
-backend/uploads/*
-!backend/uploads/.gitkeep
 graphify-out/
+# Cloudflare Worker: local secrets file and Wrangler's cache
+.dev.vars
+.wrangler/
